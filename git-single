@@ -1,0 +1,11 @@
+#!/bin/sh
+message=$1 # First parameter will be the branch name/commit message
+# currentBranch=$(git symbolic-ref --short -q HEAD) # Getting the current branch
+if [ ! -z "$1" ] # checking if the branch name/commit message is present. If not then aborting.
+then
+  git checkout -b $1
+  git commit -am "${1//-/ }"
+  git push origin $1
+else
+  echo "branch name/commit message is not provided"
+fi
